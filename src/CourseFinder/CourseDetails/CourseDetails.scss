@@ -1,0 +1,33 @@
+.course-details {
+  &__name {
+    box-sizing: border-box;
+    background-color: #060da5;
+    color: #fff;
+    height: 50px;
+    padding: 0 10px;
+    margin: 0;
+    line-height: 50px;
+    vertical-align: middle;
+  }
+
+  &__data {
+    padding: 0 10px;
+    color: #535353;
+
+    &__details {
+      margin-top: 10px;
+      width: 100%;
+
+      td {
+        padding: 5px 0;
+      }
+
+      &__label {
+        color: #999;
+        margin-right: 20px;
+        width: 30%;
+      }
+    }
+
+  }
+}

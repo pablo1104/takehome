@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,600;1,700&display=swap');
+
+// Font Variables
+$open-sans: 'Open sans', sans-serif;
+
+html, * {
+  font-family: $open-sans;
+}
+.take-home {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 500px;
+  }
+}
