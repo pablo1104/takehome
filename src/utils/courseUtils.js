@@ -11,7 +11,6 @@ export function getCourseDetails(searchText) {
     "semester": '',
 
   }
-  console.log(splittedText);
 
   if (splittedText.length <= 1 || splittedText.length >4)
     return null;
@@ -20,9 +19,8 @@ export function getCourseDetails(searchText) {
     if (index === 0) {
       if(hasNumber(value) && isLetter(value[0])) {
         let courseFinished = false;
-        console.log(value);
+
         [...value].forEach((letter, index) => {
-          console.log(letter, isNumber(letter));
           if (isLetter(letter) && !courseFinished) {
             courseDetails.department += letter;
           } else if (delimiters.includes(letter) && !courseFinished) {
@@ -54,7 +52,6 @@ export function getCourseDetails(searchText) {
 
     if (index >=2 && !courseDetailsCompleted) {
       const dataFrom = getSemesterAndYear(value);
-      console.log(dataFrom);
       courseDetails.semester = courseDetails.semester || dataFrom?.semester;
       courseDetails.year = courseDetails.year || dataFrom?.year;
 
@@ -67,6 +64,7 @@ export function getCourseDetails(searchText) {
   });
 
   courseDetails.year = normalizeYear(courseDetails.year);
+  courseDetails.department = courseDetails.department.toUpperCase();
   courseDetails.semester = normalizeSemester(courseDetails.semester);
 
   if (!courseDetails.semester || !courseDetails.year || !courseDetails.course || !courseDetails.department || isError) {
@@ -88,7 +86,8 @@ function normalizeSemester(semester) {
   if (semester.length <=2) {
     return semesterMapping[semester.toLowerCase()];
   } else {
-    return semester;
+    const normalizedSemester = semester[0].toUpperCase() + semester.substr(1).toLowerCase();
+    return normalizedSemester;
   }
 
 }
@@ -102,11 +101,10 @@ function getSemesterAndYear(value) {
     year: '',
     semester: '',
   }
-  console.log(value, hasLetter(value));
+
   if (!hasNumber(value)) {
     dataSemesterAndYear.semester = value;
   } else if (!hasLetter(value)) {
-    console.log('test')
     dataSemesterAndYear.year = value;
   } else {
     if (isShortSummerWithYearAtBeginning(value) || isShortSummerWithYearAtEnd(value)) {
