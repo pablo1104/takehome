@@ -20,14 +20,13 @@ function CourseFinder() {
   }, []);
   const handleSubmitSearch = useCallback(()=>{
     const courseDetails = getCourseDetails(searchText);
-    console.log(courseDetails);
+
     if (courseDetails) {
       setDepartment(courseDetails.department);
       setCourse(courseDetails.course);
       setYear(courseDetails.year);
       setSemester(courseDetails.semester);
     } else {
-      console.log('error');
       setDepartment('');
       setCourse('');
       setYear('');
